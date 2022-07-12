@@ -1,0 +1,27 @@
+services:
+  api:
+    container_name: flaskApi
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./app:/code/app
+      - ./migrations:/code/migrations
+    expose:
+      - 5000
+    ports:
+      - 5000:5000
+    depends_on:
+      - pg
+    environment:
+      FLASK_ENV: development
+    # command: bash -c 'flask db upgrade && flask run'
+  pg:
+    container_name: flaskDb
+    image: postgres
+    env_file:
+      - .env
+    expose:
+      - 5432
+    ports:
+      - 5432:5432

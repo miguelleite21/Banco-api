@@ -1,0 +1,6 @@
+class InvalidCpfError(Exception):
+    ...
+
+
+class InvalidDateFormatError(Exception):
+    ...
